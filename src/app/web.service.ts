@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-// import 'rxjs/add/operator/toPromise';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +8,10 @@ import { Http } from '@angular/http';
 
 export class WebService {
 
-  constructor(private http: Http) {}
-
+  constructor(private http: HttpClient) {}
   getMessages() {
-    return this.http.get('http://localhost:1234/messages').toPromise();
+    return this.http.get('http://localhost:1234/messages').pipe(
+      map();
+    );
   }
 }
